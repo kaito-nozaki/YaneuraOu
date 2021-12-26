@@ -1,9 +1,17 @@
+#!/bin/bash
 cd source
 make
 
-# エンジンをbinフォルダに移動
-mkdir -p ../bin
-mv YaneuraOu-by-gcc ../bin/
+# pathの指定 (デフォルトはbinフォルダ)
+path=$1
+if [ "$path" = "" ]
+then
+  $path="/content/YaneuraOu/bin"
+fi
+
+# エンジンをpathフォルダに移動
+mkdir -p "$path"
+mv YaneuraOu-by-gcc "$path"
 
 # 一旦contentへ
 cd /content
@@ -13,6 +21,5 @@ wget https://github.com/tttak/YaneuraOu/releases/download/V4.89_NNUE-HalfKPE9/NN
 unzip NNUE-HalfKPE9.zip
 
 # 評価関数をevalフォルダに移動
-mkdir -p /content/YaneuraOu/bin/eval
-cp -pr /content/NNUE-HalfKPE9/nn.bin /content/YaneuraOu/bin/eval
-
+mkdir -p "$path"/eval
+cp -pr /content/NNUE-HalfKPE9/nn.bin "$path"/eval
