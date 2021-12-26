@@ -4,9 +4,9 @@ make
 
 # pathの指定 (デフォルトはbinフォルダ)
 path=$1
-if [ "$path" = "" ]
+if [ -z "$path" ]
 then
-  $path="/content/YaneuraOu/bin"
+  path="/content/YaneuraOu/bin"
 fi
 
 # エンジンをpathフォルダに移動
